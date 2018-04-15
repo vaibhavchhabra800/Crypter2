@@ -100,6 +100,51 @@
 
 </div>
 
+
+
+
+
+
+<!--Work work-->
+
+
+  <h4 class="container" >Recently in news</h4>
+
+  <div id="app" class="container">
+    <table class="table">
+      <thead class="thead-dark">
+      <tr><th>News</th><th>Source</th><th>Url</th>
+      </tr>
+
+      <tr v-for="article in articles">
+        <td v-text="article.description">
+        </td>
+
+        <td>
+          <span v-text="article.source.name" alt="" />
+        </td>
+        <td><a v-text="article.url" alt="" /></a>
+        </td>
+      </tr>
+
+    </table>
+  </div>
+
+
+
+
+<!--Work end-->
+
+
+
+
+
+
+
+
+
+
+
 <div>
 
 {% if request.user.is_authenticated %}
@@ -177,7 +222,37 @@
 
 <script src='{%  static "./js/tabledatacurrency.js" %}' ></script>
 <script src='{%  static "./js/makechart.js" %}' ></script>
-
+<script type="text/javascript">
+var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello Vue!',
+        articles:[
+          {'description':'Hello','url':''},
+          {'description':'Hi','url':''},
+        ]
+      },
+      mounted(){
+        console.log('mounted app')
+        s=window.location.pathname.split("/")
+        this.makeNewsRequest(s[2])
+      },
+      methods:{
+        makeNewsRequest(currencyName){
+          var n =  new Date();
+          var y = n.getFullYear();
+          var m = n.getMonth() + 1;
+          var d = n.getDate();
+          var vm = this;
+          var url = 'https://newsapi.org/v2/everything?q='+currencyName+'&language=en&from=2018-03-1&to='+y+'-'+m+'-'+d+'&sortBy=popularity&apiKey=1ef4a184745844a8b3ddaf3a0cf081a7';
+          axios.get(url).then(function(result){
+            console.log(result)
+            vm.articles = result.data.articles
+          })
+        }
+    }
+    });
+</script>
 <br/><br/>
 {% include "footer.html" %}
 </body>
