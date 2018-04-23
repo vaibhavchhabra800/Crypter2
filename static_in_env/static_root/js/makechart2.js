@@ -164,7 +164,7 @@ function makeCorsRequest2(coinname) {
 
         };
 
-
+//JUst delete this comment
     var url = 'https://www.cryptocurrencychart.com/api/coin/history/'+dictionary1[coinname]+'/2017-05-23/2018-03-03/marketCap/USD';
     var xhr = createCORSRequest('GET',url);
     //console.log(url);
