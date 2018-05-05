@@ -69,13 +69,13 @@ function update(value){
         }
 
 
-        $.each([ 1,2,3,4,5,6,7,8,9 ], function( index, value ) {
+        $.each([ 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30 ], function( index, value ) {
             var theindex1=-1;
             for(iz2=0;iz2<40;iz2+=1)
             {
                 if(set3.length==0)
                     break;
-                if(jsonshit[0][index].name==set3[0])
+                if(jsonshit[0][iz2].name==set3[0])
                 {
                    set3.shift();
                    theindex1=iz2;
